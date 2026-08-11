@@ -1,45 +1,39 @@
-/* My Design Stack — tools shown in the spiral orbit.
-   `src` uses a real logo from /public/images/logos when we have one;
-   otherwise a brand-tinted monogram mark keeps the set visually uniform.
-   To upgrade a monogram: drop an SVG/PNG in that folder and swap in `src`. */
+/* My Tech Stack — tools shown in the spiral orbit. */
 
 export type Tool = {
   name: string;
-  group: "AI" | "Design" | "Build" | "Creative";
+  group: string;
   src?: string;
   mono?: string;
   color?: string;
 };
 
 export const TOOLS: Tool[] = [
-  /* — AI — */
-  { name: "Claude", group: "AI", src: "/images/logos/claude.png" },
-  { name: "ChatGPT", group: "AI", src: "/images/logos/chatgpt.png" },
-  { name: "Gemini", group: "AI", mono: "Gm", color: "#2C6BD8" },
-  { name: "Perplexity", group: "AI", mono: "Px", color: "#1F7A86" },
+  /* — Languages — */
+  { name: "Python", group: "Languages", mono: "Py", color: "#306998" },
+  { name: "Java", group: "Languages", mono: "Jv", color: "#b07219" },
+  { name: "TypeScript", group: "Languages", mono: "TS", color: "#3178C6" },
+  { name: "JavaScript", group: "Languages", mono: "JS", color: "#F7DF1E" },
+  
+  /* — Frontend — */
+  { name: "React", group: "Frontend", mono: "Re", color: "#61DAFB" },
+  { name: "Tailwind CSS", group: "Frontend", mono: "TW", color: "#06B6D4" },
+  { name: "HTML5", group: "Frontend", mono: "H5", color: "#E34F26" },
+  { name: "Vite", group: "Frontend", mono: "Vt", color: "#646CFF" },
 
-  /* — Design — */
-  { name: "Figma", group: "Design", src: "/images/logos/figma.png" },
-  { name: "Framer", group: "Design", src: "/images/logos/framer.png" },
-  { name: "Spline", group: "Design", src: "/images/logos/spline.png" },
-  { name: "Notion", group: "Design", src: "/images/logos/notion.png" },
+  /* — Backend & DB — */
+  { name: "FastAPI", group: "Backend", mono: "FA", color: "#009688" },
+  { name: "Node.js", group: "Backend", mono: "Nd", color: "#339933" },
+  { name: "PostgreSQL", group: "Backend", mono: "Pg", color: "#336791" },
+  { name: "MongoDB", group: "Backend", mono: "Mg", color: "#47A248" },
 
-  /* — Build — */
-  { name: "Cursor", group: "Build", mono: "Cu", color: "#141414" },
-  { name: "VS Code", group: "Build", mono: "VS", color: "#0065A9" },
-  { name: "GitHub", group: "Build", mono: "GH", color: "#181717" },
-  { name: "React", group: "Build", mono: "Re", color: "#0E7C99" },
-  { name: "Next.js", group: "Build", mono: "N", color: "#141414" },
-  { name: "Tailwind", group: "Build", mono: "TW", color: "#0891A6" },
-  { name: "HTML", group: "Build", mono: "H5", color: "#D6431C" },
-  { name: "CSS", group: "Build", mono: "C3", color: "#1572B6" },
+  /* — AI / ML — */
+  { name: "PyTorch", group: "AI/ML", mono: "PT", color: "#EE4C2C" },
+  { name: "OpenCV", group: "AI/ML", mono: "CV", color: "#5C3EE8" },
+  { name: "YOLOv8", group: "AI/ML", mono: "YO", color: "#00FFFF" },
 
-  /* — Creative — */
-  { name: "Photoshop", group: "Creative", mono: "Ps", color: "#1E7FC4" },
-  { name: "Illustrator", group: "Creative", mono: "Ai", color: "#D97A00" },
-  { name: "After Effects", group: "Creative", mono: "Ae", color: "#5C4FE0" },
-  { name: "Midjourney", group: "Creative", src: "/images/logos/midjourney.png" },
-  { name: "CapCut", group: "Creative", src: "/images/logos/capcut.png" },
-  { name: "Runway", group: "Creative", mono: "Rw", color: "#141414" },
-  { name: "ElevenLabs", group: "Creative", mono: "11", color: "#141414" },
+  /* — Cybersecurity — */
+  { name: "Kali Linux", group: "Cybersecurity", mono: "KL", color: "#557C94" },
+  { name: "Ethical Hacking", group: "Cybersecurity", mono: "EH", color: "#000000" },
+  { name: "OWASP", group: "Cybersecurity", mono: "OW", color: "#000000" },
 ];

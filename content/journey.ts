@@ -1,20 +1,4 @@
-/* THE JOURNEY — the chapters the light tunnel travels through.
- *
- * ⚠ SOURCING: every fact here traces to Gireesh's CV (mirrored in
- * content/experience.ts) — companies, dates, places, roles and outcomes.
- * The 2021 chapter carries only what he stated himself: the year and
- * Telangana. Nothing biographical is invented around it.
- *
- * Shape per chapter:
- *   year   — shown large, the anchor
- *   title  — what the chapter is about, in his voice
- *   place  — where it happened (context line)
- *   story  — what was actually happening, 2–3 sentences
- *   bridge — how it handed over to the next chapter (the transition line)
- *
- * `fr` mirrors every translatable field (see lib/i18n.tsx -> L()). Company,
- * product and place names stay as they are. French runs ~15% longer than
- * English, so the copy is written to length, not translated literally. */
+/* THE JOURNEY — the chapters the light tunnel travels through. */
 
 export type Chapter = {
   id: string;
@@ -28,107 +12,48 @@ export type Chapter = {
 
 export const CHAPTERS: Chapter[] = [
   {
-    id: "roots",
-    year: "2021",
-    title: "Roots",
-    place: "Telangana, India",
-    story:
-      "Where the story starts. Southern India — the fixed point everything after it gets measured against: seven roles, two countries, and one deliberate change of craft.",
-    bridge: "It started with a sales target, not a design brief.",
-    fr: {
-      title: "Racines",
-      place: "Telangana, Inde",
-      story:
-        "Là où l’histoire commence. Le sud de l’Inde — le point fixe auquel tout se mesure ensuite : sept postes, deux pays, et un changement de métier assumé.",
-      bridge: "Cela a commencé par un objectif de vente, pas par un brief de design.",
-    },
-  },
-  {
-    id: "customers",
-    year: "2022",
-    title: "Customers first, pixels much later",
-    place: "Tutorac → Sage Finance · Telangana",
-    story:
-      "Business development for a subscription e-learning platform: reading why people renewed, why they left, and what actually moved a portfolio. $50K+ in subscriptions in a single month. By September I had moved to Sage Finance.",
-    bridge:
-      "Two years of asking customers questions before I ever opened a design tool — still the part of my process I trust most.",
-    fr: {
-      title: "Les clients d’abord, les pixels bien plus tard",
-      place: "Tutorac → Sage Finance · Telangana",
-      story:
-        "Développement commercial pour une plateforme d’e-learning par abonnement : comprendre pourquoi on renouvelle, pourquoi on part, ce qui fait vraiment bouger un portefeuille. Plus de 50 000 $ d’abonnements en un mois. En septembre, je rejoignais Sage Finance.",
-      bridge:
-        "Deux ans à interroger des clients avant d’ouvrir le moindre outil de design — c’est resté la partie de mon processus en laquelle j’ai le plus confiance.",
-    },
-  },
-  {
-    id: "playbook",
+    id: "hsc",
     year: "2023",
-    title: "Writing the playbook",
-    place: "Sage Finance · Telangana, India",
+    title: "High School to Engineering",
+    place: "Government Higher Secondary School",
     story:
-      "A full year owning sales strategy and client acquisition: market analysis, segmentation, pipeline against tracked KPIs. I wrote the inbound-to-close playbook the wider sales team adopted, and a $20K+ week turned into a promotion to Marketing Team Lead.",
-    bridge:
-      "That playbook was the first time I designed a system instead of working inside one. I wanted to learn how to do it properly.",
-    fr: {
-      title: "Écrire le playbook",
-      place: "Sage Finance · Telangana, Inde",
-      story:
-        "Une année entière à piloter la stratégie commerciale et l’acquisition client : analyse de marché, segmentation, pipeline face aux KPI suivis. J’ai écrit le playbook inbound-to-close adopté par toute l’équipe, et une semaine à plus de 20 000 $ est devenue une promotion au marketing.",
-      bridge:
-        "Ce playbook a été la première fois que je concevais un système au lieu de travailler dedans. Restait à apprendre à le faire vraiment.",
-    },
+      "Graduated High School (Bio-Maths) with 75.1% and immediately embarked on a B.E. in Computer Science and Engineering with a specialization in Cyber Security at Sri Venkateswaraa College of Technology.",
+    bridge: "Building the foundation for a career bridging software development and cybersecurity."
   },
   {
-    id: "france",
+    id: "early-tech",
     year: "2024",
-    title: "Starting over, in French",
-    place: "Montpellier Business School · France",
+    title: "Entering Tech and Development",
+    place: "Sri Venkateswaraa College of Technology",
     story:
-      "August closed the India chapter. September opened an MSc in International Business at Montpellier Business School — new country, new language, and the formal training my instincts had been running without.",
-    bridge: "Business school handed me the vocabulary. The next year handed me the craft.",
-    fr: {
-      title: "Tout recommencer, en français",
-      place: "Montpellier Business School · France",
-      story:
-        "Août a refermé le chapitre indien. Septembre a ouvert un MSc International Business à Montpellier Business School — nouveau pays, nouvelle langue, et la formation qui manquait à des intuitions déjà en marche.",
-      bridge: "L’école m’a donné le vocabulaire. L’année suivante m’a donné le métier.",
-    },
+      "Explored deep into the fundamentals of Computer Science and Cyber Security. Cultivated a strong foundation in languages like Python and Java, while getting hands-on with ethical hacking and vulnerability assessment.",
+    bridge: "The academic foundation translated quickly into practical building."
   },
   {
-    id: "three-rooms",
+    id: "full-stack",
     year: "2025",
-    title: "Three rooms, one question",
-    place: "Montpellier · Los Gatos (remote) · Paris",
+    title: "Hackathons and Full-Stack Mastery",
+    place: "Hackathons & Let's GameTech",
     story:
-      "Three roles in one year. SEO and CRO at Site Web & Co — 35% organic growth, won by fixing templates rather than pages. Human-in-the-loop AI at Oigetit — teaching a misinformation engine to explain itself. Process analysis at V Raise in Paris — 12% efficiency across logistics workflows.",
-    bridge:
-      "Measurement, trust and systems: three different rooms, all asking how you make something complex feel obvious. That question has a job title.",
-    fr: {
-      title: "Trois terrains, une seule question",
-      place: "Montpellier · Los Gatos (à distance) · Paris",
-      story:
-        "Trois postes en un an. SEO et CRO chez Site Web & Co — +35 % de trafic organique, gagnés en corrigeant les gabarits plutôt que les pages. IA « human-in-the-loop » chez Oigetit — apprendre à un moteur anti-désinformation à s’expliquer. Analyse de processus chez V Raise à Paris — +12 % d’efficacité sur les flux logistiques.",
-      bridge:
-        "Mesure, confiance, systèmes : trois terrains différents, une même question — comment rendre le complexe évident ? Cette question a un intitulé de poste.",
-    },
+      "Participated in Simverse Hackathon and completed a Full Stack Engineer Internship at Let's GameTech. Mastered frontend-backend integrations and began connecting React applications with robust backends.",
+    bridge: "From learning to competing, to shipping production-level applications."
   },
   {
-    id: "product",
+    id: "ai-cyber",
     year: "2026",
-    title: "The job it was heading toward",
-    place: "Sophia Antipolis, France",
+    title: "AI, Cyber, and Scalable Products",
+    place: "Indiwebpros, Webstack Academy, Zintora Soft",
     story:
-      "March: first place at the UNBIAS hackathon with LockAI, a privacy-first offline AI assistant — strategy, UX and three working prototypes in one sprint. May: Product Designer at Heeding, designing the UX of a sustainable-fuel marketplace aimed at a billion tonnes of avoided CO₂.",
-    bridge:
-      "Selling taught me customers. Analysis taught me systems. Design is where the two finally do the same job.",
-    fr: {
-      title: "Le métier vers lequel tout allait",
-      place: "Sophia Antipolis, France",
-      story:
-        "Mars : première place au hackathon UNBIAS avec LockAI, un assistant IA hors-ligne axé confidentialité — stratégie, UX et trois prototypes fonctionnels en un sprint. Mai : Product Designer chez Heeding, l’UX d’une marketplace de carburants durables visant un milliard de tonnes de CO₂ évitées.",
-      bridge:
-        "La vente m’a appris les clients. L’analyse m’a appris les systèmes. Le design est l’endroit où les deux font enfin le même travail.",
-    },
+      "A year of intense building: developed e-commerce apps at Indiwebpros, food ordering platforms at Webstack Academy, and phishing URL detection systems at Zintora Soft. Participated in multiple hackathons including Google x Gemini and Project Viksit Bharat.",
+    bridge: "Merging AI, Cybersecurity, and Web Development into a cohesive skill set."
   },
+  {
+    id: "future",
+    year: "2027",
+    title: "Graduation and Beyond",
+    place: "Sri Venkateswaraa College of Technology",
+    story:
+      "Approaching the completion of my B.E. degree with a CGPA of 8.20/10. Focused on integrating AI technologies and rigorous security measures into the next generation of scalable web platforms.",
+    bridge: "The journey is just beginning."
+  }
 ];

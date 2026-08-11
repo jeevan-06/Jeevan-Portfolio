@@ -24,26 +24,26 @@ const caveat = Caveat({
 });
 
 const DESCRIPTION =
-  "Product Designer crafting UX for climate-tech and AI products — where design, data, and business strategy meet. Based in Antibes, France.";
+  "Cyber Security Engineering student and Full Stack Developer with hands-on experience building web applications, AI-powered platforms, and data-driven solutions.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Gireesh Kumar Reddy — Product Designer",
+    default: "Jeevan Kumar M — Full Stack Developer",
     template: "%s",
   },
   description: DESCRIPTION,
   openGraph: {
-    title: "Gireesh Kumar Reddy — Product Designer",
+    title: "Jeevan Kumar M — Full Stack Developer",
     description: DESCRIPTION,
     url: SITE_URL,
-    siteName: "Gireesh — Portfolio",
+    siteName: "Jeevan — Portfolio",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gireesh Kumar Reddy — Product Designer",
+    title: "Jeevan Kumar M — Full Stack Developer",
     description: DESCRIPTION,
   },
 };
