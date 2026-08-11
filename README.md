@@ -1,14 +1,10 @@
-# Gireesh — Portfolio
+# Jeevan — Portfolio
 
-Personal portfolio of **Gireesh Kumar Reddy Kolli**, Product Designer & UX
-Consultant (Antibes, France). A single-page cinematic experience: full-screen
+Personal portfolio of **Jeevan Kumar**. A single-page cinematic experience: full-screen
 scenes stacked on top of each other, each one rising over the last as you
 scroll, with scroll-driven set pieces inside them.
 
-**Live product work:** [myheeding.com](https://www.myheeding.com/en) ·
-**Profiles:** [LinkedIn](https://www.linkedin.com/in/gireesh-kumar-reddy-kolli-) ·
-[GitHub](https://github.com/gireeshkumarreddy) ·
-[Instagram](https://www.instagram.com/itsgireeshreddy)
+**Profiles:** [GitHub](https://github.com/jeevan-06)
 
 ## Stack
 
@@ -24,7 +20,7 @@ scroll, with scroll-driven set pieces inside them.
 
 ## The scenes
 
-1. **Intro** — Three.js gallery tunnel travelled through the "GIREESH" mask
+1. **Intro** — Three.js gallery tunnel travelled through the "JEEVAN" mask
 2. **Hero** — headline, stats, CTAs
 3. **About** — identity, philosophy, velocity marquee
 4. **Journey** — six resume chapters (2021–2026) inside a light-cable tunnel
