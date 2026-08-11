@@ -1,6 +1,6 @@
 # Jeevan — Portfolio
 
-Personal portfolio of **Jeevan Kumar**. A single-page cinematic experience: full-screen
+Personal portfolio of **Jeevan**. A single-page cinematic experience: full-screen
 scenes stacked on top of each other, each one rising over the last as you
 scroll, with scroll-driven set pieces inside them.
 
