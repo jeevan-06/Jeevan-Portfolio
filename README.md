@@ -21,9 +21,23 @@
 
 ## 🌟 Overview
 
-Welcome to the source code of my personal portfolio! This project is currently in the design and development phase, focusing on **high-performance animations**, **fluid UI**, and **modern web standards**. 
+Welcome to the source code of my personal portfolio! This project represents a culmination of modern web design, performance optimization, and interactive storytelling. Rather than a standard scrolling website, this portfolio is built to be a deeply immersive, single-page cinematic experience where scenes dynamically unfold as you scroll.
 
-It’s built to be a deeply immersive, single-page cinematic experience where scenes dynamically unfold as you scroll.
+The primary goal is to showcase my skills as a creative developer by using cutting-edge tools to create fluid, hardware-accelerated animations and interactive 3D environments that run smoothly across all devices.
+
+---
+
+## 🚀 Key Features & Roadmap
+
+While this project is actively evolving, here are the core features that define its architecture and user experience:
+
+- **Immersive 3D Environments:** Utilizing Three.js and React Three Fiber to build interactive backgrounds and elements that respond to user interaction and scroll position.
+- **Cinematic Scroll Animations:** Leveraging GSAP (GreenSock Animation Platform) and ScrollTrigger to pin sections, scrub timelines, and create a narrative flow as the user scrolls down the page.
+- **Fluid Micro-Interactions:** Using Framer Motion for immediate, physics-based UI responses (hover states, button clicks, modal entrances, and page transitions).
+- **Silky Smooth Scrolling:** Integrated with Lenis to hijack the native scroll and provide a buttery-smooth `requestAnimationFrame` loop that makes scroll-tied animations feel incredibly natural.
+- **Accessible & Unstyled Components:** Built on top of Radix UI primitives via shadcn/ui, ensuring that all interactive elements (like modals, dropdowns, and tabs) are fully accessible to screen readers and keyboard users without sacrificing design flexibility.
+- **Fully Responsive Design:** Tailored using Tailwind CSS to look stunning on massive 4K monitors down to the smallest mobile screens.
+- **Type-Safe Data:** Strictly typed with TypeScript, ensuring that all portfolio content (projects, experience, bio) is validated before rendering.
 
 ---
 
@@ -44,9 +58,42 @@ This project is built using modern web development standards, prioritizing perfo
 
 ---
 
+## 📂 Project Structure
+
+To keep the codebase maintainable and scalable, the project follows a strict directory structure:
+
+```text
+├── app/                  # Next.js App Router: layout, globals.css, and main pages
+├── components/           # React Components
+│   ├── ui/               # Reusable UI elements (shadcn/ui buttons, cards, etc.)
+│   ├── sections/         # Large page sections (Hero, About, Projects, Contact)
+│   └── layout/           # Structural components (Navbar, Footer, Layout wrappers)
+├── lib/                  # Utilities: GSAP/Lenis setup, fetchers, and helper functions
+├── hooks/                # Custom React hooks (e.g., useWindowSize, useMousePosition)
+├── content/              # Typed JSON/TS files storing the actual portfolio data
+└── public/               # Static assets like images, fonts, and 3D models (.glb, .gltf)
+```
+
+---
+
+## 🎨 Design Philosophy
+
+1. **Accessibility First:** Every motion path checks `prefers-reduced-motion` and falls back to static readable content.
+2. **Performance Optimized:** Only hardware-accelerated properties (`transform` and `opacity`) are animated.
+3. **Typography Matters:** Carefully selected fonts and typographic scales to ensure maximum readability.
+4. **Content is King:** Animations exist to highlight the work, never to distract from it.
+
+---
+
 ## ⚡ Getting Started (Local Development)
 
 To run this project on your local machine, follow these steps:
+
+### Prerequisites
+- Node.js 18.17 or later.
+- npm, yarn, pnpm, or bun.
+
+### Installation
 
 ```bash
 # 1. Clone the repository
@@ -61,7 +108,27 @@ npm install
 # 4. Start the development server
 npm run dev     
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+### Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+npm run start
+```
+
+---
+
+## 📬 Contact & Socials
+
+I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
+
+- **GitHub:** [@jeevan-06](https://github.com/jeevan-06)
+- **LinkedIn:** [Coming Soon](#)
+- **Twitter / X:** [Coming Soon](#)
 
 ---
 
