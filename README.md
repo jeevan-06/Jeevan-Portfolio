@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Jeevan — Portfolio 
+# 🚀 **JEEVAN** — Portfolio 
 
 <p align="center">
   <strong>A modern, interactive portfolio built with cutting-edge web technologies.</strong>
