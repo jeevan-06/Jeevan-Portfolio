@@ -38,8 +38,8 @@ export const DICT: Record<string, Entry> = {
 
   /* ---------------- hero ---------------- */
   "hero.kicker": {
-    en: "Product Designer & UX Consultant",
-    fr: "Product Designer & consultant UX",
+    en: "Full Stack Developer, Cybersecurity Engineering",
+    fr: "Développeur Full Stack, Ingénierie Cybersécurité",
   },
   "hero.h1a": { en: "Products that feel", fr: "Des produits qui semblent" },
   "hero.h1aEm": { en: "obvious.", fr: "évidents." },

@@ -10,9 +10,6 @@ import styles from "./Nav.module.css";
    Home always returns to the true beginning of the portfolio. */
 const LINKS = [
   { key: "nav.home", href: "#home", watch: null },
-  { key: "nav.about", href: "#about", watch: "about" },
-  { key: "nav.work", href: "#work", watch: "work" },
-  { key: "nav.contact", href: "#contact", watch: "contact" },
 ];
 
 export default function Nav() {

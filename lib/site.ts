@@ -7,7 +7,7 @@ export const SITE_URL =
 
 export const PERSON = {
   name: "Jeevan Kumar M",
-  jobTitle: "Full Stack Developer | Cybersecurity Engineering Student",
+  jobTitle: "Full Stack Developer, Cybersecurity Engineering",
   email: "jeevankumarm06@gmail.com",
   location: "Tamil Nadu, India",
   /* exact profile URLs as supplied — also consumed by JSON-LD */

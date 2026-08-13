@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Caveat } from "next/font/google";
+import { Inter, Instrument_Serif, Caveat, JetBrains_Mono } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { LanguageProvider } from "@/lib/i18n";
 import { SITE_URL, PERSON } from "@/lib/site";
@@ -8,6 +8,11 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-ui",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -63,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} ${caveat.variable}`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${caveat.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <LanguageProvider>
