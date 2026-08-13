@@ -173,6 +173,37 @@ I am always open to discussing new projects, creative ideas, or opportunities to
 
 ---
 
+## 📈 Performance & Core Web Vitals
+
+Ensuring the site remains performant despite heavy 3D rendering and animations is a top priority. We target the following Core Web Vitals:
+
+- **Largest Contentful Paint (LCP):** < 2.5s. Achieved through aggressive Next.js image optimization and preloading critical assets.
+- **First Input Delay (FID):** < 100ms. GSAP animations run off the main thread whenever possible, and heavy Three.js calculations are optimized.
+- **Cumulative Layout Shift (CLS):** 0.1 or less. All dimensions for images and 3D canvases are explicitly defined to prevent jank during load.
+
+*Note: You can run a local Lighthouse audit by building the project (`npm run build`) and serving it locally, then checking the Chrome DevTools.*
+
+---
+
+## 🤔 Frequently Asked Questions
+
+**Q: Why use GSAP instead of purely Framer Motion?**
+A: While Framer Motion is incredible for state-based micro-interactions (like hover effects and modal popups), GSAP's ScrollTrigger is currently unparalleled for building complex, timeline-based animations that are scrubbable and tied directly to the viewport scroll position. Using both gives us the best of both worlds.
+
+**Q: Isn't Three.js too heavy for a portfolio?**
+A: It can be! That's why we use React Three Fiber to manage the scene graph declaratively, combined with `@react-three/drei` for optimized asset loading (like Draco compression for GLTF models) and performance scaling (dropping pixel ratio on low-end devices).
+
+**Q: How do you handle accessibility with WebGL?**
+A: The canvas acts as a progressive enhancement. The core content (text, links, buttons) exists in the DOM and is fully readable by screen readers. We ensure that `aria-hidden="true"` is set on purely decorative 3D canvases, and users preferring reduced motion are served simplified CSS transitions.
+
+---
+
+## 📝 License
+
+This project is open-source and available under the MIT License. You are free to use this architecture as a learning resource or inspiration for your own portfolio. However, please **do not** directly clone the repository and pass off my design, personal content, or projects as your own. 
+
+---
+
 <div align="center">
   <b>Designed & Built with ❤️ by Jeevan</b>
 </div>
