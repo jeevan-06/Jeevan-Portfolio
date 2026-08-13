@@ -53,12 +53,14 @@ This project is built using modern web development standards, prioritizing perfo
 |:---|:---|:---|
 | **Framework** | **Next.js 16 (App Router)** | Powers the React application, server-side rendering, and dynamic routing for case studies. |
 | **Language** | **TypeScript** | Ensures type safety across all components and content files. |
-| **Animation Engine**| **GSAP + ScrollTrigger** | Handles complex, timeline-based animations bound to the user's scroll position. |
+| **Styling** | **Tailwind CSS + CSS Modules** | Utility-first styling with Tailwind CSS alongside scoped CSS modules and tokens in `app/globals.css`. |
+| **UI Components** | **shadcn/ui + Radix UI** | Accessible, headless components built on Radix and fully customizable via Tailwind. |
+| **Animation Engine**| **GSAP + Framer Motion** | GSAP/ScrollTrigger handles complex scroll-driven timelines, while Framer Motion handles fluid micro-interactions. |
 | **Smooth Scrolling**| **Lenis** | Provides a single `requestAnimationFrame` loop for silky smooth scrolling (`lib/lenis.ts`). |
-| **3D Rendering** | **Three.js** | Drives the interactive 3D elements like the intro tunnel and journey cables. |
-| **Styling** | **CSS Modules** | Scoped styling with design tokens defined globally in `app/globals.css`. |
+| **3D Rendering** | **Three.js + React Three Fiber** | Drives interactive 3D elements, custom GLSL shaders, and WebGL experiences. |
 | **Content Config** | **Typed Local Files** | All data (projects, experience, etc.) is strictly typed and stored in the `content/` directory. |
 | **i18n (Language)**| **React Context** | Supports EN/FR translation (`lib/i18n.tsx`) through pure state that survives scrolling. |
+| **Deployment** | **Vercel** | Optimized for Vercel's global CDN and Edge network with built-in CI/CD. |
 
 <br />
 
