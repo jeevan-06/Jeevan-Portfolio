@@ -1,0 +1,459 @@
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  overflow: hidden;
+  font-family: var(--font-ui), sans-serif;
+  box-sizing: border-box;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 2vw;
+}
+
+/* ---------------- NAV ---------------- */
+.topNav {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  width: 100%;
+  padding: 0 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+}
+
+.logoDot {
+  color: #c0392b;
+}
+
+.navLinks {
+  display: flex;
+  gap: 3rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #8c887f;
+}
+
+.activeLink {
+  color: #1a1a1a;
+  position: relative;
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #c0392b;
+}
+
+.menuBtn {
+  width: 40px;
+  height: 40px;
+  background: #1a1a1a;
+  color: #faf9f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ---------------- COLUMNS ---------------- */
+.leftCol {
+  position: relative;
+  width: 55%;
+  height: 100%;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.rightCol {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 4vw;
+  box-sizing: border-box;
+}
+
+/* ---------------- INTRO BLOCK (Left) ---------------- */
+.introBlock {
+  position: absolute;
+  top: 10rem;
+  left: 2vw;
+  width: calc(100% - 2vw);
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: #8c887f;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.nameWrap {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.accentLine {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 2px;
+  background: #c0392b;
+}
+
+.nameBlock {
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.firstName {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  display: block;
+}
+
+.lastName {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  display: block;
+  letter-spacing: 0;
+}
+
+.role {
+  font-family: var(--font-ui);
+  font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.subRole {
+  font-size: 1.1rem;
+  color: #8c887f;
+  max-width: 550px;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+.bottomLabels {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: #8c887f;
+  margin-bottom: 3rem;
+}
+
+.dot {
+  margin: 0 0.5em;
+}
+
+/* ---------------- STATS & BUTTONS (Left Stage 02) ---------------- */
+.detailsBlock {
+  position: absolute;
+  top: 10rem;
+  left: 2vw;
+  width: calc(100% - 2vw);
+  opacity: 0; /* Animated in via GSAP */
+  transform: translateY(40px);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+/* Border separator for grid items except first */
+.statRow + .statRow::before {
+  content: '';
+  position: absolute;
+  left: -0.75rem;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: #d8d5cf;
+}
+
+.statIcon {
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8c887f;
+}
+
+.statValue {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.btnPrimary {
+  background: #1a1a1a;
+  color: #faf9f4;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.btnSecondary {
+  color: #1a1a1a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btnSecondary::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: #d8d5cf;
+}
+
+/* ---------------- IMAGE & VERTICAL TEXT (Right) ---------------- */
+.imageWrap {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(100%) contrast(1.15) sepia(5%);
+}
+
+.verticalText {
+  position: absolute;
+  right: 2vw;
+  top: 50%;
+  transform: translateY(-50%) rotate(270deg);
+  transform-origin: center right;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #8c887f;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.accent {
+  color: #c0392b;
+}
+
+/* ---------------- BOTTOM NAV ---------------- */
+.bottomNav {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  padding: 0 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+.bottomLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.circleLogo {
+  width: 40px;
+  height: 40px;
+  background: #1a1a1a;
+  color: #faf9f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: #8c887f;
+}
+
+.progLine {
+  width: 60px;
+  height: 1px;
+  background: #D8D5CF;
+  position: relative;
+  overflow: hidden;
+}
+
+.progFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.scrollHint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #8c887f;
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrowDown {
+  color: #1a1a1a;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #d8d5cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+/* Utilities for GSAP stagger */
+.revealWrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.reveal {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+@media (max-width: 1000px) {
+  .inner { flex-direction: column; padding-top: 8rem; }
+  .leftCol, .rightCol { width: 100%; }
+  .navLinks { display: none; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .verticalText { display: none; }
+  .scrollHint { display: none; }
+  .imageWrap { height: 50vh; margin-top: 3rem; }
+}
+
+/* ---------------- CUSTOM CURSOR ---------------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.cursorVisible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}

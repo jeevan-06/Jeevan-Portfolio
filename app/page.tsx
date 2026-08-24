@@ -1,7 +1,8 @@
-import Nav from "@/components/layout/Nav";
+
 import Scene from "@/components/layout/Scene";
 import TunnelIntro from "@/components/sections/TunnelIntro";
-
+import HomeHero from "@/components/sections/HomeHero";
+import WorkSection from "@/components/sections/WorkSection";
 /*
  * THE STACK.
  *
@@ -24,7 +25,7 @@ import TunnelIntro from "@/components/sections/TunnelIntro";
 export default function Home() {
   return (
     <>
-      <Nav />
+
       <main>
         {/* keepOnMobile: these three fill one screen at any size, so they stay
             cinematic frames on phones too. The rest release into normal flow —
@@ -33,7 +34,13 @@ export default function Home() {
           <TunnelIntro />
         </Scene>
 
+        <Scene order={2} runway={2} id="home" keepOnMobile>
+          <HomeHero />
+        </Scene>
 
+        <Scene order={3} runway={6} id="work">
+          <WorkSection />
+        </Scene>
       </main>
     </>
   );

@@ -103,7 +103,7 @@ export default function TunnelIntro({ text = "JEEVAN" }: { text?: string }) {
     renderer.setPixelRatio(Math.min(DPR_CAP, window.devicePixelRatio || 1));
 
     const bgColor = new THREE.Color(BACKGROUND);
-    const white = new THREE.Color("#ffffff");
+    const fadeColor = new THREE.Color("#ffffff"); // Match HomeHero background
 
     const scene = new THREE.Scene();
     scene.background = bgColor.clone();
@@ -390,12 +390,12 @@ export default function TunnelIntro({ text = "JEEVAN" }: { text?: string }) {
         if (m.opacity >= 1) fading.splice(i, 1);
       }
 
-      /* ---- THE TRANSITION: world compresses into white ---- */
+      /* ---- THE TRANSITION: world compresses into off-white ---- */
       const k = gsap.utils.clamp(0, 1, (progress - T_START) / (1 - T_START));
       if (k > 0) {
         const eased = k * k * (3 - 2 * k);
-        (scene.background as THREE.Color).copy(bgColor).lerp(white, eased);
-        fog.color.copy(bgColor).lerp(white, eased);
+        (scene.background as THREE.Color).copy(bgColor).lerp(fadeColor, eased);
+        fog.color.copy(bgColor).lerp(fadeColor, eased);
         fog.far = FOG_FAR - (FOG_FAR - 2.2) * eased; /* depth reduces */
         lineMaterial.opacity = 0.5 * (1 - eased);
       } else {

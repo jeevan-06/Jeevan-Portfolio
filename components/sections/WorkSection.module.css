@@ -1,0 +1,319 @@
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: transparent;
+  color: #1a1a1a;
+  overflow: hidden;
+  font-family: var(--font-ui), sans-serif;
+  box-sizing: border-box;
+}
+
+.wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: -1;
+  opacity: 0;
+  animation: fadeInBg linear forwards;
+  animation-timeline: view();
+  animation-range: cover 0% cover 20%;
+}
+
+@keyframes fadeInBg {
+  to { opacity: 1; }
+}
+
+/* ================= BACKGROUND SVG Z-LINE ================= */
+.zLineBg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* Behind projects */
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+/* ================= INTRO TEXT ================= */
+.eyebrow {
+  position: absolute;
+  top: 10rem;
+  left: 4vw;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: #8c887f;
+  text-transform: uppercase;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.eyebrowSub {
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ================= PAIRS CONTAINER ================= */
+.zContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  overflow: hidden;
+  perspective: 1600px;
+}
+
+.pairContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  will-change: transform, opacity, clip-path;
+  transform-style: preserve-3d;
+}
+
+/* ================= PROJECT CARDS ================= */
+.projectCard {
+  width: 35vw;
+  max-width: 600px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Accessible focus state */
+.projectCard:focus-visible {
+  outline: 2px solid #c0392b;
+  outline-offset: 10px;
+}
+
+.projectVisual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f4f4f5;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.visualTextWrapper {
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+}
+
+.visualText {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  line-height: 1;
+  color: #1a1a1a;
+  opacity: 0.15;
+}
+
+.visualCategory {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #8c887f;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.0);
+  transition: background 0.4s ease;
+}
+
+.projectMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  border-bottom: 1px solid #e8e8ea;
+  padding-bottom: 0.5rem;
+}
+
+.projectNumber {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  color: #8c887f;
+  font-weight: 600;
+}
+
+.projectTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  transform: translateX(0);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.projectCategory {
+  font-size: 0.7rem;
+  color: #c0392b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.projectDesc {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.projectLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  margin-top: 1rem;
+}
+
+.arrow {
+  transform: translateX(0);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ================= HOVER INTERACTIONS ================= */
+.projectCard:hover .visualTextWrapper {
+  transform: scale(1.02);
+}
+
+.projectCard:hover .imageOverlay {
+  background: rgba(26, 26, 26, 0.03);
+}
+
+.projectCard:hover .projectTitle {
+  transform: translateX(8px);
+}
+
+.projectCard:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* ================= FIXED PROGRESS UI ================= */
+.progressContainer {
+  position: absolute;
+  bottom: 4vw;
+  left: 4vw;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 20;
+}
+
+.progressCounter {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: baseline;
+}
+
+.counterMask {
+  display: inline-flex;
+  height: 1.2em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.counterNumbers {
+  display: flex;
+  flex-direction: column;
+  color: #c0392b;
+  will-change: transform;
+}
+
+.counterNumbers div {
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.counterTotal {
+  color: #1a1a1a;
+  margin-left: 0.2rem;
+}
+
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 1000px) {
+  .eyebrow {
+    top: 6rem;
+  }
+  
+  .eyebrowSub {
+    display: none;
+  }
+
+  .zLineBg {
+    display: none; /* Hide SVG line on mobile as it's harder to track stacked layout */
+  }
+
+  .pairContainer {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 6rem; /* Push down below eyebrow */
+  }
+
+  .projectCard {
+    width: 85vw;
+    gap: 1rem;
+  }
+
+  .projectVisual {
+    aspect-ratio: 2 / 1; /* Shorter aspect ratio so two fit vertically */
+  }
+
+  .projectTitle {
+    font-size: 1.5rem;
+  }
+  
+  .projectDesc {
+    font-size: 0.9rem;
+    display: none; /* Hide desc on mobile so 2 cards fit nicely on screen */
+  }
+
+  /* Reduce hover effects on mobile */
+  .projectCard:hover .projectTitle,
+  .projectCard:hover .arrow {
+    transform: none;
+  }
+}
