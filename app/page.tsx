@@ -3,6 +3,7 @@ import Scene from "@/components/layout/Scene";
 import TunnelIntro from "@/components/sections/TunnelIntro";
 import HomeHero from "@/components/sections/HomeHero";
 import WorkSection from "@/components/sections/WorkSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
 /*
  * THE STACK.
  *
@@ -40,6 +41,10 @@ export default function Home() {
 
         <Scene order={3} runway={6} id="work">
           <WorkSection />
+        </Scene>
+
+        <Scene order={4} runway={14} id="experience">
+          <ExperienceSection />
         </Scene>
       </main>
     </>

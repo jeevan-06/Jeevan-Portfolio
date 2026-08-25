@@ -1,0 +1,334 @@
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  
+  /* Cinematic Token Overrides */
+  --ink: #1a1a1a;
+  --ink-2: #666666;
+  --ink-dim: #8c887f;
+  --line: rgba(26, 26, 26, 0.1);
+  --surface: #f4f4f5;
+
+  overflow: hidden;
+  font-family: var(--font-ui), -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ================= HUD & FRAMING ================= */
+.cameraFrame {
+  position: absolute;
+  inset: 2vw;
+  border: 1px solid var(--line);
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.frameCornerTopLeft,
+.frameCornerTopRight,
+.frameCornerBottomLeft,
+.frameCornerBottomRight {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ink);
+}
+.frameCornerTopLeft { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.frameCornerTopRight { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.frameCornerBottomLeft { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.frameCornerBottomRight { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.hudTop, .hudBottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.hudItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.recDot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff3333;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ================= FILM GRAIN ================= */
+.filmGrain {
+  position: absolute;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 90;
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* ================= SCENE ARCHITECTURE ================= */
+.sceneContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10vw;
+  will-change: transform, opacity, filter;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.contentWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4vw;
+}
+
+/* Text Content Area */
+.textContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  will-change: filter, transform;
+}
+
+.expNumber {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--ink-dim);
+  margin-bottom: 2rem;
+  font-family: var(--font-mono), monospace;
+}
+
+.expRole {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
+  color: var(--ink);
+}
+
+.expCompany {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: var(--ink-2);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.expDate {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  font-family: var(--font-mono), monospace;
+}
+
+/* Abstract Visual Area */
+.visualContent {
+  width: 35%;
+  height: 60%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  will-change: filter, transform;
+}
+
+.visualWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific Scene Overrides for Layout */
+.scene04 .contentWrapper {
+  /* Rack Focus scene - elements stacked in depth */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.scene04 .textContent, .scene04 .visualContent {
+  position: absolute;
+  width: auto;
+  height: auto;
+  border: none;
+  background: transparent;
+}
+
+.scene04 .visualContent {
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.scene04 .textContent {
+  z-index: 10;
+}
+
+/* Intro Text */
+.introScene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  will-change: transform, opacity, filter;
+  text-align: center;
+}
+
+.introEyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+  font-family: var(--font-mono), monospace;
+  margin-bottom: 2rem;
+}
+
+.introTitle {
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Outro Text */
+.outroScene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.outroTitle {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: var(--ink);
+}
+
+.outroMeta {
+  margin-top: 3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+  font-family: var(--font-mono), monospace;
+  text-align: center;
+}
+
+/* Scan Line for Zintora */
+.scanLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background-color: var(--ink);
+  box-shadow: 0 0 15px rgba(26,26,26,0.3);
+  z-index: 50;
+  transform: translateX(-100vw);
+}
+
+/* Abstract Aperture Mask */
+.apertureMask {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  z-index: 40;
+  clip-path: circle(0% at center);
+  visibility: hidden;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .contentWrapper {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .visualContent {
+    width: 100%;
+    height: 30vh;
+  }
+  .cameraFrame {
+    inset: 4vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene, .introScene, .outroScene, .scanLine, .apertureMask {
+    transition: none !important;
+  }
+}
