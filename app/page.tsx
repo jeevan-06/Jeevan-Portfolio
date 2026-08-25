@@ -4,6 +4,7 @@ import TunnelIntro from "@/components/sections/TunnelIntro";
 import HomeHero from "@/components/sections/HomeHero";
 import WorkSection from "@/components/sections/WorkSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
+import TechnicalSkillsSection from "@/components/sections/TechnicalSkillsSection";
 /*
  * THE STACK.
  *
@@ -45,6 +46,10 @@ export default function Home() {
 
         <Scene order={4} runway={14} id="experience">
           <ExperienceSection />
+        </Scene>
+
+        <Scene order={5} runway={15} id="skills">
+          <TechnicalSkillsSection />
         </Scene>
       </main>
     </>
