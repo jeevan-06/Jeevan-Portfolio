@@ -1,10 +1,10 @@
-
 import Scene from "@/components/layout/Scene";
 import TunnelIntro from "@/components/sections/TunnelIntro";
 import HomeHero from "@/components/sections/HomeHero";
 import WorkSection from "@/components/sections/WorkSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import TechnicalSkillsSection from "@/components/sections/TechnicalSkillsSection";
+
 /*
  * THE STACK.
  *
@@ -27,7 +27,6 @@ import TechnicalSkillsSection from "@/components/sections/TechnicalSkillsSection
 export default function Home() {
   return (
     <>
-
       <main>
         {/* keepOnMobile: these three fill one screen at any size, so they stay
             cinematic frames on phones too. The rest release into normal flow —

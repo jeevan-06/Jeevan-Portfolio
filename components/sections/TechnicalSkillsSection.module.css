@@ -1,212 +1,348 @@
-.container {
+.viewport {
+  position: relative;
   width: 100%;
-  min-height: 100vh;
-  background-color: #ffffff;
+  height: 100svh;
+  background-color: #f8f8f8;
   color: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.scrollContainer {
+  /* We will translate this container horizontally using GSAP */
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  padding: 40px 4rem 0 4rem; /* 40px top padding ensures it never clips the top */
+  will-change: transform;
+}
+
+/* The exact Grid from the image */
+.galleryGrid {
+  display: grid;
+  /* Scaled down columns */
+  grid-template-columns: 320px 240px 240px 240px 240px;
+  grid-template-rows: auto auto; /* Two main rows */
+  gap: 1px; /* The 1px gray lines */
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker line color for clarity */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.05);
+}
+
+.cell {
+  background-color: #ffffff;
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 8rem 2rem 4rem 2rem;
-  overflow: hidden; /* Prevent scrollbars during 3D rotation clipping */
-  perspective: 2500px; /* 3D Depth */
 }
 
-/* Header */
-.header {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto 4rem auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(30px);
+/* Specific Spans */
+.cellIntro {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.label {
+.cellFrontend { grid-column: 2 / 3; grid-row: 1 / 2; padding: 1.5rem; }
+.cellBackend  { grid-column: 3 / 4; grid-row: 1 / 2; padding: 1.5rem; }
+.cellDatabase { grid-column: 4 / 5; grid-row: 1 / 2; padding: 1.5rem; }
+.cellAI       { grid-column: 5 / 6; grid-row: 1 / 2; padding: 1.5rem; }
+
+.cellCyber {
+  grid-column: 2 / 4; /* Spans Frontend and Backend */
+  grid-row: 2 / 3;
+  padding: 1.5rem;
+}
+
+.cellTools {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+  padding: 1.5rem;
+}
+
+.cellStack {
+  grid-column: 5 / 6;
+  grid-row: 2 / 3;
+  padding: 1.5rem;
+  background-color: #fafafa; /* Slightly distinct background */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* --- Typography --- */
+.headerPre {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  font-family: var(--font-ui);
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
   margin-bottom: 1rem;
 }
 
-.title {
-  font-family: var(--font-ui);
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: #000000;
+.headerDesc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.7;
+  max-width: 250px;
+  margin-bottom: 2rem;
 }
 
-.subtitle {
+.colHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.colNumber {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.25);
+  line-height: 1;
+}
+
+.colTitle {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.7);
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
-/* 3D Camera / Grid Wrapper */
-.gridWrapper {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  transform-style: preserve-3d;
-  /* GSAP targets this for the overall parallax tilt */
+.colIcon {
+  color: #000;
+  opacity: 0.5;
 }
 
-/* Grid System */
-.grid {
-  width: 100%;
+/* --- Cards Grid --- */
+.cardsGrid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1px;
-  background-color: rgba(0, 0, 0, 0.15); /* Forms the ultra-thin borders */
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transform-style: preserve-3d;
-  
-  /* GSAP initial entrance state */
-  filter: blur(20px);
-  opacity: 0;
-  transform: scale(0.9);
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Category Block */
-.categoryBlock {
-  background-color: #ffffff;
-  padding: 3rem 2.5rem;
+.cardItem {
   display: flex;
   flex-direction: column;
-  transform-style: preserve-3d;
-  /* GSAP handles opacity and Z-translation. Box-shadow is handled here */
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-/* When elevated via GSAP, apply severe shadow */
-.categoryBlock.elevated {
-  background-color: #fafafa;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.15), 0 20px 30px -10px rgba(0, 0, 0, 0.08);
-  /* The Z-translation is applied via inline styles from GSAP */
+.cardItem:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transform: translateY(-2px);
 }
 
-/* Span helpers for the 12-col grid */
-.span3 { grid-column: span 3; }
-.span4 { grid-column: span 4; }
-.span6 { grid-column: span 6; }
-.span8 { grid-column: span 8; }
-.span12 { grid-column: span 12; }
-
-@media (max-width: 1200px) {
-  .span3 { grid-column: span 4; }
-  .span4 { grid-column: span 6; }
+.cardImage {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
 }
 
-@media (max-width: 1024px) {
-  .span3, .span4, .span6, .span8 { grid-column: span 6; }
+.cardName {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #111;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  .span3, .span4, .span6, .span8, .span12 { grid-column: span 12; }
-  .container { padding: 6rem 1rem 2rem 1rem; }
-  .categoryBlock { padding: 2rem 1.5rem; }
-  /* Disable 3D tilt on mobile */
-  .gridWrapper, .grid, .categoryBlock {
-    transform-style: flat;
-  }
-}
-
-/* Block Internals */
-.categoryTitle {
+.viewSkillsBtn {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #000000;
-  margin-bottom: 2.5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  transform: translateZ(20px); /* Typography floats slightly above the pane */
+  gap: 0.5rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+.viewSkillsBtn:hover {
+  color: #000;
 }
 
-.categoryTitle::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.skillsList {
+/* Horizontal Cards (Cybersecurity, Tools) */
+.horizontalRow {
   display: flex;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  transform: translateZ(10px); /* Skills float slightly */
+}
+.cardItemHorizontal {
+  flex: 1;
+  min-width: 60px;
+  padding: 0.75rem 0.25rem;
 }
 
-.skillItem {
+/* --- Stack Area --- */
+.stackHeader {
   font-family: var(--font-ui);
-  font-size: clamp(1.25rem, 1.8vw, 2rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.stackGraphic {
+  flex: 1;
   position: relative;
-  cursor: crosshair;
-  transition: color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  padding: 0 0.25rem; 
+  justify-content: center;
+  margin: 1rem 0;
 }
 
-/* Magnetic Brackets effect on hover */
-.skillItem::before,
-.skillItem::after {
-  font-family: var(--font-mono);
-  font-weight: 300;
-  color: #000000;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.stackCenter {
+  width: 48px;
+  height: 48px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  z-index: 2;
+}
+
+.stackRing {
   position: absolute;
-  font-size: 1.1em;
+  width: 100px;
+  height: 100px;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
 }
 
-.skillItem::before {
-  content: "[";
-  left: -0.5rem;
-  transform: translateX(10px);
+.stackNode {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stackNode img, .stackNode svg {
+  width: 12px;
+  height: 12px;
 }
 
-.skillItem::after {
-  content: "]";
-  right: -0.5rem;
-  transform: translateX(-10px);
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.skillItem:hover {
-  color: #000000;
-  transform: scale(1.02);
+.stackFooterText {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 1rem;
 }
 
-.skillItem:hover::before,
-.skillItem:hover::after {
-  opacity: 1;
-  transform: translateX(0);
+.connectBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
-/* Accessibility: Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .header, .gridWrapper, .grid, .categoryBlock {
+.illustration {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Removed CSS flat cubes to keep it clean */
+}
+
+@media (max-width: 1400px) {
+  /* On smaller screens, scale the grid to fit vertically if needed */
+  .galleryGrid {
+    transform: scale(0.95);
+    transform-origin: left center;
+  }
+}
+@media (max-height: 800px) {
+  .galleryGrid {
+    transform: scale(0.85);
+    transform-origin: left center;
+  }
+}
+@media (max-height: 700px) {
+  .galleryGrid {
+    transform: scale(0.75);
+    transform-origin: left center;
+  }
+}
+@media (max-width: 1024px) {
+  .galleryGrid {
+    transform: scale(0.8);
+    transform-origin: left center;
+  }
+}
+@media (max-width: 768px) {
+  .viewport {
+    height: auto;
+    padding: 4rem 1rem;
+    overflow: visible;
+  }
+  .scrollContainer {
+    padding: 0;
     transform: none !important;
-    filter: none !important;
-    opacity: 1 !important;
   }
-  .skillItem:hover {
+  .galleryGrid {
+    display: flex;
+    flex-direction: column;
     transform: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    gap: 2rem;
   }
-  .skillItem:hover::before,
-  .skillItem:hover::after {
-    transform: none;
+  .cell {
+    border: 1px solid rgba(0,0,0,0.1);
   }
 }

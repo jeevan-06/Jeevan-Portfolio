@@ -103,21 +103,25 @@ export default function HomeHero() {
       // Jeevan
       if (nameJeevanRef.current) {
         const jeevanChars = nameJeevanRef.current.querySelectorAll(`.${styles.splitChar}`);
-        tlLoad.fromTo(jeevanChars, 
-          { y: "110%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 1, stagger: 0.05, ease: "power3.out" },
-          0
-        );
+        if (jeevanChars.length > 0) {
+          tlLoad.fromTo(jeevanChars, 
+            { y: "110%", opacity: 0 },
+            { y: "0%", opacity: 1, duration: 1, stagger: 0.05, ease: "power3.out" },
+            0
+          );
+        }
       }
 
       // Kumar
       if (nameKumarRef.current) {
         const kumarChars = nameKumarRef.current.querySelectorAll(`.${styles.splitChar}`);
-        tlLoad.fromTo(kumarChars, 
-          { y: "110%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 1, stagger: 0.05, ease: "power3.out" },
-          0.15
-        );
+        if (kumarChars.length > 0) {
+          tlLoad.fromTo(kumarChars, 
+            { y: "110%", opacity: 0 },
+            { y: "0%", opacity: 1, duration: 1, stagger: 0.05, ease: "power3.out" },
+            0.15
+          );
+        }
       }
 
       // Software Developer
