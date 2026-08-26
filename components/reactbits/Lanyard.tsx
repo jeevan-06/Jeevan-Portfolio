@@ -9,8 +9,8 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      meshLineGeometry: ReactThreeFiber.Object3DNode<any, any>;
-      meshLineMaterial: ReactThreeFiber.MaterialNode<any, any>;
+      meshLineGeometry: any;
+      meshLineMaterial: any;
     }
   }
 }
@@ -113,7 +113,7 @@ function Band({
   lanyardImage = null,
   lanyardWidth = 1
 }: any) {
-  const band = useRef<any>();
+  const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);
   const j2 = useRef<any>(null);
