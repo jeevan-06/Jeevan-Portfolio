@@ -43,7 +43,7 @@ export default function Home() {
           <WorkSection />
         </Scene>
 
-        <Scene order={4} runway={14} id="experience">
+        <Scene order={4} runway={8} id="experience">
           <ExperienceSection />
         </Scene>
 

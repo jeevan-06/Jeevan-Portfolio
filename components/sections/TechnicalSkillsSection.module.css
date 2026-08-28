@@ -1,348 +1,193 @@
 .viewport {
   position: relative;
   width: 100%;
-  height: 100svh;
-  background-color: #f8f8f8;
-  color: #000000;
+  background-color: #fafafa; /* Slight off-white for premium feel */
+  color: #111111;
+  overflow: clip;
+}
+
+.pinContainer {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  font-family: var(--font-ui);
 }
 
-.scrollContainer {
-  /* We will translate this container horizontally using GSAP */
-  display: flex;
-  height: 100%;
-  align-items: flex-start;
-  padding: 40px 4rem 0 4rem; /* 40px top padding ensures it never clips the top */
-  will-change: transform;
-}
-
-/* The exact Grid from the image */
-.galleryGrid {
-  display: grid;
-  /* Scaled down columns */
-  grid-template-columns: 320px 240px 240px 240px 240px;
-  grid-template-rows: auto auto; /* Two main rows */
-  gap: 1px; /* The 1px gray lines */
-  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker line color for clarity */
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.05);
-}
-
-.cell {
-  background-color: #ffffff;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Specific Spans */
-.cellIntro {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-  padding: 3rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.cellFrontend { grid-column: 2 / 3; grid-row: 1 / 2; padding: 1.5rem; }
-.cellBackend  { grid-column: 3 / 4; grid-row: 1 / 2; padding: 1.5rem; }
-.cellDatabase { grid-column: 4 / 5; grid-row: 1 / 2; padding: 1.5rem; }
-.cellAI       { grid-column: 5 / 6; grid-row: 1 / 2; padding: 1.5rem; }
-
-.cellCyber {
-  grid-column: 2 / 4; /* Spans Frontend and Backend */
-  grid-row: 2 / 3;
-  padding: 1.5rem;
-}
-
-.cellTools {
-  grid-column: 4 / 5;
-  grid-row: 2 / 3;
-  padding: 1.5rem;
-}
-
-.cellStack {
-  grid-column: 5 / 6;
-  grid-row: 2 / 3;
-  padding: 1.5rem;
-  background-color: #fafafa; /* Slightly distinct background */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-
-/* --- Typography --- */
-.headerPre {
+/* --- Typography Basics --- */
+.monoSmall {
   font-family: var(--font-mono);
   font-size: 0.75rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.5;
-  margin-bottom: 2rem;
+  color: #666666;
 }
 
-.headerTitle {
-  font-family: var(--font-ui);
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+/* --- Left Side: Sticky Category Title --- */
+.categoryDisplay {
+  position: absolute;
+  top: 50%;
+  left: 5vw;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 35vw;
+  pointer-events: none;
+}
+
+.categoryLabel {
   margin-bottom: 1rem;
 }
 
-.headerDesc {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  opacity: 0.7;
-  max-width: 250px;
-  margin-bottom: 2rem;
+.categoryTitleWrapper {
+  position: relative;
+  height: 120px; /* enough to hold the giant text */
+  overflow: hidden;
 }
 
-.colHeader {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-
-.colNumber {
-  font-family: var(--font-mono);
-  font-size: 2rem;
-  font-weight: 400;
-  color: rgba(0,0,0,0.25);
+.categoryTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 4.5vw;
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.04em;
+  will-change: transform, opacity;
 }
 
-.colTitle {
-  font-family: var(--font-ui);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
+/* --- Right Side: Horizontal Scroll Track --- */
+.scrollTrack {
+  display: flex;
+  height: 100vh;
+  width: max-content;
+  will-change: transform;
 }
 
-.colIcon {
-  color: #000;
-  opacity: 0.5;
+.categoryBlock {
+  width: 100vw; /* Each block takes a full screen width */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Push to the right */
+  padding-right: 5vw;
+  padding-left: 45vw; /* Leave space for the sticky title on the left */
 }
 
-/* --- Cards Grid --- */
-.cardsGrid {
+/* --- Tech Cards Grid --- */
+.techGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
 }
 
-.cardItem {
+.techCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background-color: #ffffff;
-  transition: all 0.2s ease;
-  cursor: pointer;
+  padding: 2.5rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  will-change: transform, opacity;
+  opacity: 0; /* Hidden initially for GSAP reveal */
+  transform: translateY(30px);
 }
 
-.cardItem:hover {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transform: translateY(-2px);
+.techCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
 }
 
-.cardImage {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 0.5rem;
+.techIcon {
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s ease;
 }
 
-.cardName {
-  font-size: 0.7rem;
-  font-weight: 500;
+.techCard:hover .techIcon {
+  transform: scale(1.1);
+}
+
+.techName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   color: #111;
   text-align: center;
 }
 
-.viewSkillsBtn {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #666;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-top: auto;
-  padding: 0.5rem 0;
-  transition: color 0.2s;
-}
-.viewSkillsBtn:hover {
-  color: #000;
-}
-
-/* Horizontal Cards (Cybersecurity, Tools) */
-.horizontalRow {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.cardItemHorizontal {
-  flex: 1;
-  min-width: 60px;
-  padding: 0.75rem 0.25rem;
-}
-
-/* --- Stack Area --- */
-.stackHeader {
-  font-family: var(--font-ui);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  background: #000;
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-.stackGraphic {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
-.stackCenter {
-  width: 48px;
-  height: 48px;
-  background: #000;
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-ui);
-  font-size: 1.25rem;
-  z-index: 2;
-}
-
-.stackRing {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border: 1px dashed rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  animation: rotate 20s linear infinite;
-}
-
-.stackNode {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.stackNode img, .stackNode svg {
-  width: 12px;
-  height: 12px;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.stackFooterText {
-  font-size: 0.75rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.connectBtn {
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.illustration {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Removed CSS flat cubes to keep it clean */
-}
-
-@media (max-width: 1400px) {
-  /* On smaller screens, scale the grid to fit vertically if needed */
-  .galleryGrid {
-    transform: scale(0.95);
-    transform-origin: left center;
-  }
-}
-@media (max-height: 800px) {
-  .galleryGrid {
-    transform: scale(0.85);
-    transform-origin: left center;
-  }
-}
-@media (max-height: 700px) {
-  .galleryGrid {
-    transform: scale(0.75);
-    transform-origin: left center;
-  }
-}
+/* --- Responsive Adjustments --- */
 @media (max-width: 1024px) {
-  .galleryGrid {
-    transform: scale(0.8);
-    transform-origin: left center;
+  .categoryTitle {
+    font-size: 6vw;
+  }
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .categoryBlock {
+    padding-left: 40vw;
   }
 }
+
 @media (max-width: 768px) {
-  .viewport {
-    height: auto;
-    padding: 4rem 1rem;
-    overflow: visible;
-  }
-  .scrollContainer {
-    padding: 0;
-    transform: none !important;
-  }
-  .galleryGrid {
-    display: flex;
-    flex-direction: column;
+  /* On mobile, stack vertically inside the horizontal block, or completely change layout */
+  .categoryDisplay {
+    top: 15vh;
+    left: 5vw;
+    width: 90vw;
     transform: none;
-    width: 100%;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-    gap: 2rem;
   }
-  .cell {
-    border: 1px solid rgba(0,0,0,0.1);
+  
+  .categoryTitleWrapper {
+    height: 80px;
+  }
+
+  .categoryTitle {
+    font-size: 12vw;
+  }
+
+  .categoryBlock {
+    padding-left: 5vw;
+    padding-top: 30vh;
+    align-items: flex-start;
+  }
+
+  .techGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .techCard {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .techIcon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1rem;
+  }
+
+  .techName {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
