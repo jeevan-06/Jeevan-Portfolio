@@ -1,203 +1,125 @@
 .viewport {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fafafa;
   color: #111111;
   display: flex;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh 5vw;
 }
 
-/* --- Background Visuals --- */
-.bgVisual {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.glowBlob {
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.04) 0%, rgba(250, 250, 250, 0) 70%);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  filter: blur(40px);
-  will-change: transform;
-}
-
-/* --- Left Side: 40% Sticky Index --- */
-.leftSide {
-  width: 40%;
-  height: 100%;
+.carouselWrapper {
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 5vw;
-  position: relative;
-  z-index: 2;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  gap: 3rem;
 }
 
-.eyebrow {
+.sectionHeader {
+    text-align: center;
+}
+
+.sectionTitle {
+    font-family: var(--font-ui);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+}
+
+.sectionSubtitle {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.sceneMarker {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.3em;
+  color: #ff3333;
   text-transform: uppercase;
-  color: #888;
-  margin-bottom: 2rem;
-}
-
-.indexList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.indexItem {
-  font-family: var(--font-ui);
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #cccccc;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-/* The active class is toggled by JS */
-.indexItem.active {
-  color: #111111;
-  font-weight: 700;
-  transform: translateX(15px);
-}
-
-.indexIndicator {
+.sceneMarker::before, .sceneMarker::after {
+  content: '';
+  display: block;
   width: 20px;
-  height: 2px;
-  background-color: #111111;
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 1px;
+  background-color: #ff3333;
 }
 
-.indexItem.active .indexIndicator {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-/* --- Right Side: 60% Scrolling Content --- */
-.rightSide {
-  width: 60%;
-  height: 100vh;
-  position: relative;
-  z-index: 2;
-}
-
-.rightTrack {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  will-change: transform;
-}
-
-.expBlock {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5vw 8vw;
-}
-
-.expNumber {
+.company {
   font-family: var(--font-mono);
-  font-size: 1.2rem;
-  color: #888;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.role {
+  font-family: var(--font-ui);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #111;
   margin-bottom: 1.5rem;
 }
 
-.expRole {
-  font-family: var(--font-ui);
-  font-size: clamp(2.5rem, 4vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.expDate {
+.date {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: #666;
-  background: rgba(0, 0, 0, 0.04);
-  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: #555;
+  background: rgba(0,0,0,0.03);
+  padding: 0.4rem 1.2rem;
   border-radius: 20px;
-  display: inline-block;
-  align-self: flex-start;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
-/* --- Responsive --- */
-@media (max-width: 1024px) {
-  .leftSide {
-    width: 45%;
-  }
-  .rightSide {
-    width: 55%;
-  }
-  .indexItem {
-    font-size: 1.4rem;
-  }
+.description {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
 }
 
 @media (max-width: 768px) {
+  .cardContent {
+    padding: 2rem 1rem;
+  }
+  .role {
+    font-size: 1.8rem;
+  }
   .viewport {
-    flex-direction: column;
-  }
-  .leftSide {
-    width: 100%;
-    height: 35vh;
-    padding-top: 10vh;
-    border-right: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  .indexList {
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 2rem;
-    padding-bottom: 1rem;
-    /* Hide scrollbar for a cleaner look */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .indexList::-webkit-scrollbar {
-    display: none;
-  }
-  .indexItem {
-    font-size: 1.5rem;
-    white-space: nowrap;
-  }
-  .indexItem.active {
-    transform: none;
-  }
-  .indexIndicator {
-    display: none;
-  }
-  .rightSide {
-    width: 100%;
-    height: 65vh;
-  }
-  .expBlock {
-    height: 65vh;
-    padding: 2rem 5vw;
+    padding-top: 15vh;
   }
 }

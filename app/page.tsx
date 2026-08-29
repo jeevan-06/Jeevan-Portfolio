@@ -43,11 +43,11 @@ export default function Home() {
           <WorkSection />
         </Scene>
 
-        <Scene order={4} runway={8} id="experience">
+        <Scene order={4} runway={10} id="experience">
           <ExperienceSection />
         </Scene>
 
-        <Scene order={5} runway={15} id="skills">
+        <Scene order={5} runway={8} id="skills">
           <TechnicalSkillsSection />
         </Scene>
       </main>
